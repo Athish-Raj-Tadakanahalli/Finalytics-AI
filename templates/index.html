@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Finalytics AI - Smart Personal Finance & Wealth Intelligence{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row align-items-center py-5">
+    <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3 border bg-white shadow-sm">
+            <span class="badge bg-primary rounded-pill px-2 py-1">New</span>
+            <small class="fw-semibold text-secondary">AI-Driven Financial Tracking Engine</small>
+        </div>
+        
+        <h1 class="display-4 fw-extrabold text-dark mb-3" style="letter-spacing: -0.03em; line-height: 1.15;">
+            Master Your Money with <span style="background: linear-gradient(135deg, #4f46e5 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Intelligent Insights</span>
+        </h1>
+        
+        <p class="lead text-muted mb-4 fs-5" style="line-height: 1.6;">
+            Log transactions effortlessly, visualize monthly cashflow dynamics, set strict budget ceilings, and receive algorithmic suggestions to accelerate your savings.
+        </p>
+
+        <div class="d-flex flex-wrap align-items-center gap-3">
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary-gradient btn-lg px-4 py-3 shadow">
+                Go to Dashboard <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            {% else %}
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary-gradient btn-lg px-4 py-3 shadow">
+                <i class="bi bi-stars me-1"></i> Start Free Today
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-outline-custom btn-lg px-4 py-3">
+                Sign In
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="d-flex align-items-center gap-4 mt-5 pt-3 border-top">
+            <div>
+                <h4 class="fw-bold mb-0 text-dark">100%</h4>
+                <small class="text-muted">Data Privacy</small>
+            </div>
+            <div class="border-start ps-4">
+                <h4 class="fw-bold mb-0 text-dark">Real-Time</h4>
+                <small class="text-muted">Cashflow Analytics</small>
+            </div>
+            <div class="border-start ps-4">
+                <h4 class="fw-bold mb-0 text-dark">Instant</h4>
+                <small class="text-muted">CSV Export</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Card Mockup -->
+    <div class="col-lg-6">
+        <div class="position-relative">
+            <div class="card-modern p-4 shadow-lg border-0" style="background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);">
+                <!-- Mini Mock Dashboard Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="stat-icon bg-primary text-white" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+                        <span class="fw-bold text-dark">Financial Pulse</span>
+                    </div>
+                    <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1">
+                        <i class="bi bi-arrow-up-right"></i> +18.4%
+                    </span>
+                </div>
+
+                <!-- Mock Stats Cards -->
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 bg-white border">
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Net Balance</small>
+                            <h4 class="fw-bold text-dark mb-0">$12,450.00</h4>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 bg-white border">
+                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Savings Rate</small>
+                            <h4 class="fw-bold text-primary mb-0">34.2%</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock AI Alert Card -->
+                <div class="p-3 rounded-3 bg-indigo-subtle border border-primary-subtle mb-3" style="background-color: #f5f3ff;">
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi bi-lightbulb-fill text-primary"></i>
+                        <span class="fw-bold small text-dark">AI Spending Advisory</span>
+                    </div>
+                    <p class="small text-muted mb-0">You reduced dining out expenses by 14% this month! Keep this momentum to meet your savings goal.</p>
+                </div>
+
+                <!-- Mock Budget Bars -->
+                <div class="p-3 rounded-3 bg-white border">
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span class="fw-semibold">Monthly Groceries Budget</span>
+                        <span class="text-muted">$320 / $450</span>
+                    </div>
+                    <div class="progress progress-pill">
+                        <div class="progress-bar bg-success" style="width: 71%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="py-5 border-top">
+    <div class="text-center mb-5">
+        <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1 mb-2 fw-semibold">Features Built for Growth</span>
+        <h2 class="fw-bold">Everything You Need to Master Your Money</h2>
+        <p class="text-muted">Engineered to give you total visibility and automated financial intelligence.</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-md-4">
+            <div class="card-modern card-interactive p-4 h-100">
+                <div class="stat-icon bg-primary-subtle text-primary mb-3">
+                    <i class="bi bi-pie-chart-fill"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Category Breakdown</h5>
+                <p class="text-muted small mb-0">
+                    Seamlessly map daily expenses into intuitive categories with dynamic donut charts and distribution analytics.
+                </p>
+            </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="col-md-4">
+            <div class="card-modern card-interactive p-4 h-100">
+                <div class="stat-icon bg-info-subtle text-info mb-3">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Cashflow Trajectory</h5>
+                <p class="text-muted small mb-0">
+                    Track 6-month historical income vs expense trends to identify spending anomalies before they impact your savings.
+                </p>
+            </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="col-md-4">
+            <div class="card-modern card-interactive p-4 h-100">
+                <div class="stat-icon bg-success-subtle text-success mb-3">
+                    <i class="bi bi-stars"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Algorithmic AI Advice</h5>
+                <p class="text-muted small mb-0">
+                    Continuous rule-based evaluation of your burn rate, budget thresholds, and spending concentration.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

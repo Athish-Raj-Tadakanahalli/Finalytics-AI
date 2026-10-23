@@ -1,0 +1,329 @@
+/* ==========================================================================
+   Finalytics AI - Modern Fintech Design System
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Primary & Accent Colors */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #eef2ff;
+  --primary-glow: rgba(79, 70, 229, 0.15);
+  
+  /* Slate Surface & Border */
+  --bg-body: #f8fafc;
+  --surface-card: #ffffff;
+  --border-subtle: #e2e8f0;
+  --border-focus: #a5b4fc;
+  
+  /* Functional Colors */
+  --success: #10b981;
+  --success-light: #ecfdf5;
+  --danger: #ef4444;
+  --danger-light: #fef2f2;
+  --warning: #f59e0b;
+  --warning-light: #fffbeb;
+  --info: #0ea5e9;
+  --info-light: #f0f9ff;
+  
+  /* Text */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+  --shadow-glow: 0 0 20px -3px rgba(79, 70, 229, 0.25);
+  
+  --radius-card: 16px;
+  --radius-sm: 8px;
+  --radius-pill: 9999px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1;
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.navbar-custom {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 0;
+  transition: all 0.3s ease;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.15rem;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+}
+
+.nav-link-custom {
+  color: #cbd5e1 !important;
+  font-weight: 500;
+  font-size: 0.925rem;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link-custom:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link-custom.active {
+  color: #ffffff !important;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+.user-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   Modern Cards
+   ========================================================================== */
+.card-modern {
+  background: var(--surface-card);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.card-modern:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.card-interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Stat Cards */
+.stat-card {
+  position: relative;
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--stat-bar, #4f46e5);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.stat-val {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0.25rem 0;
+}
+
+.stat-lbl {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* AI Insights Panel */
+.ai-panel {
+  background: linear-gradient(145deg, #f8faff 0%, #eef2ff 100%);
+  border: 1px solid #c7d2fe !important;
+  border-radius: var(--radius-card);
+  position: relative;
+}
+
+.ai-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+/* Buttons */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1.25rem;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-outline-custom {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1.1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-custom:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: var(--text-main);
+}
+
+/* Tables */
+.table-custom {
+  margin-bottom: 0;
+}
+
+.table-custom thead th {
+  background-color: #f8fafc;
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 1rem;
+}
+
+.table-custom tbody td {
+  padding: 0.95rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.925rem;
+}
+
+.table-custom tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Form Controls */
+.form-control-custom, .form-select-custom {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.925rem;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.form-control-custom:focus, .form-select-custom:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  outline: none;
+}
+
+/* Progress Bars */
+.progress-pill {
+  height: 8px;
+  background-color: #f1f5f9;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-pill .progress-bar {
+  border-radius: var(--radius-pill);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Chart Canvas Wrapper */
+.chart-card-body {
+  position: relative;
+  height: 320px;
+  width: 100%;
+}
+
+/* Footer */
+.footer-custom {
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+  padding: 1.5rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

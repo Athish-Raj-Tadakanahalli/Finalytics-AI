@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Budgets - Finalytics AI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Budget Allocation</h2>
+        <p class="text-muted mb-0">Define spending ceilings per category and monitor threshold consumption.</p>
+    </div>
+    <div>
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-outline-custom">
+            <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- Budget Form Column -->
+    <div class="col-lg-4">
+        <div class="card-modern p-4">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="stat-icon bg-primary-subtle text-primary" style="width: 36px; height: 36px; font-size: 1rem;">
+                    <i class="bi bi-sliders"></i>
+                </div>
+                <h5 class="fw-bold mb-0" id="formTitle">Set / Edit Budget</h5>
+            </div>
+            <p class="small text-muted mb-3">Target a monthly limit for any expense category. Setting a budget on an existing category updates the existing limit.</p>
+
+            <form method="POST" action="{{ url_for('budgets.manage_budgets') }}">
+                <div class="mb-3">
+                    <label for="category" class="form-label fw-semibold">Expense Category</label>
+                    <select class="form-select form-select-custom" id="category" name="category" required>
+                        <option value="" disabled selected>Select category...</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="limit_amount" class="form-label fw-semibold">Monthly Spending Ceiling</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light">$</span>
+                        <input type="number" step="0.01" min="0.01" class="form-control form-control-custom" id="limit_amount" name="limit_amount" placeholder="e.g. 500.00" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary-gradient w-100 py-2">
+                    <i class="bi bi-check-circle me-1"></i> Save Budget
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Active Budgets Column -->
+    <div class="col-lg-8">
+        <div class="card-modern p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="fw-bold mb-0">Active Spending Budgets</h5>
+                    <small class="text-muted">Current progress based on recorded expenditures</small>
+                </div>
+                <span class="badge bg-light text-secondary border">{{ budgets|length }} Budgets Set</span>
+            </div>
+
+            {% if budgets %}
+            <div class="d-flex flex-column gap-3 mt-3">
+                {% for b in budgets %}
+                <div class="p-3 rounded-3 border bg-light-subtle">
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-2">
+                        <div>
+                            <span class="fw-bold fs-6 text-dark">{{ b.category_name }}</span>
+                            <div class="small text-muted">
+                                Spent: <strong class="text-dark">${{ "%.2f"|format(b.spent) }}</strong> of ${{ "%.2f"|format(b.limit_amount) }}
+                                &bull; Remaining: <strong class="{{ 'text-success' if b.remaining > 0 else 'text-danger' }}">${{ "%.2f"|format(b.remaining) }}</strong>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge {{ 'bg-danger' if b.raw_percent >= 100 else 'bg-warning text-dark' if b.raw_percent >= 80 else 'bg-success' }} px-2 py-1">
+                                {{ b.raw_percent }}% Used
+                            </span>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Edit Budget"
+                                    onclick="editBudget('{{ b.category_id }}', '{{ b.limit_amount }}', '{{ b.category_name }}')">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <form action="{{ url_for('budgets.delete_budget', budget_id=b.id) }}" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Budget" onclick="return confirm('Remove budget for {{ b.category_name }}?')">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="progress progress-pill">
+                        <div class="progress-bar {{ 'bg-danger' if b.raw_percent >= 100 else 'bg-warning' if b.raw_percent >= 80 else 'bg-success' }}"
+                             role="progressbar" style="width: {{ b.percent }}%;"
+                             aria-valuenow="{{ b.percent }}" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5 text-muted">
+                <i class="bi bi-sliders display-5 mb-2 d-block text-secondary opacity-50"></i>
+                <h5>No active budgets</h5>
+                <p class="small text-muted mb-0">Use the form on the left to set your first category budget.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+function editBudget(catId, limit, catName) {
+    document.getElementById('category').value = catId;
+    document.getElementById('limit_amount').value = limit;
+    document.getElementById('formTitle').innerText = 'Edit ' + catName + ' Budget';
+    document.getElementById('limit_amount').focus();
+}
+</script>
+{% endblock %}
+{% endblock %}

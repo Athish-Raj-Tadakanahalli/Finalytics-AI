@@ -1,0 +1,29 @@
+venv/
+.venv/
+.env
+instance/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.DS_Store
+
+# SQLite DB - you generally don't want to upload the database file
+finance.db
+*.db
+*.sqlite3
+# Ignore the error log created earlier
+db_err.txt
+

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Log In - Finalytics AI{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center py-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card-modern p-4 p-sm-5 shadow-sm">
+            <div class="text-center mb-4">
+                <div class="brand-icon mx-auto mb-3" style="width: 48px; height: 48px; font-size: 1.4rem;">
+                    <i class="bi bi-wallet2"></i>
+                </div>
+                <h3 class="fw-bold mb-1">Welcome Back</h3>
+                <p class="text-muted small">Access your financial analytics dashboard</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">Email address</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0 text-muted">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+                        <input type="email" class="form-control form-control-custom border-start-0" id="email" name="email" placeholder="name@example.com" required autofocus>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0 text-muted">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        <input type="password" class="form-control form-control-custom border-start-0" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                    <label class="form-check-label text-muted small" for="remember">Keep me signed in</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary-gradient w-100 py-2 fs-6">
+                    Sign In to Dashboard
+                </button>
+            </form>
+
+            <div class="text-center mt-4 pt-3 border-top">
+                <p class="text-muted small mb-0">Don't have an account? <a href="{{ url_for('auth.register') }}" class="text-primary fw-semibold text-decoration-none">Create one here</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
