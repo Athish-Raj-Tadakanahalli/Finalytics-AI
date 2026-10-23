@@ -15,6 +15,11 @@ class Config:
     if database_url and database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
         
-    SQLALCHEMY_DATABASE_URI = database_url or ('sqlite:///' + os.path.join(basedir, 'finance.db'))
+    if database_url:
+        SQLALCHEMY_DATABASE_URI = database_url
+    elif os.environ.get('VERCEL'):
+        SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/finance.db'
+    else:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'finance.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
